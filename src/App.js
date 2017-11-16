@@ -19,7 +19,8 @@ class App extends Component {
     const txt = [...this.state.text];
     txt.splice(letterIndex, 1);
     this.setState({
-      text: txt
+      charCount: txt.length,
+      text: txt.join("")
     });
   };
   render() {
@@ -35,7 +36,11 @@ class App extends Component {
     });
     return (
       <div className="App">
-        <input type="text" onChange={this.textChangeHandler} />
+        <input
+          type="text"
+          onChange={this.textChangeHandler}
+          value={this.state.text}
+        />
         <p>{this.state.charCount}</p>
         <ValidationComponent textLength={this.state.charCount} />
         <p>{this.state.text}</p>
