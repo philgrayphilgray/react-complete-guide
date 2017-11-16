@@ -1,74 +1,78 @@
 import React, { Component } from "react";
 import "./App.css";
-import Person from "./Person/Person";
+import ValidationComponent from "./ValidationComponent/ValidationComponent";
+import CharComponent from "./CharComponent/CharComponent";
 
 class App extends Component {
   state = {
-    persons: [
-      { name: "Phil", age: 30 },
-      { name: "Bob", age: 50 },
-      { name: "Cheongah", age: 29 }
-    ]
+    charCount: 0,
+    text: ""
   };
-  switchNameHandler = newName => {
+  textChangeHandler = event => {
+    let newCharCount = event.target.value.length;
     this.setState({
-      persons: [
-        { name: newName, age: 30 },
-        { name: "Boba", age: 530 },
-        { name: "Cheongahz", age: 29 }
-      ]
+      charCount: newCharCount,
+      text: event.target.value
     });
   };
-
-  nameChangedHandler = event => {
+  removeLetterHandler = letterIndex => {
+    const txt = [...this.state.text];
+    txt.splice(letterIndex, 1);
     this.setState({
-      persons: [
-        { name: "Phil", age: 30 },
-        { name: event.target.value, age: 50 },
-        { name: "Cheongahz", age: 29 }
-      ]
+      text: txt
     });
   };
   render() {
-    const style = {
-      backgroundColor: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    };
+    const chars = [...this.state.text].map((c, index) => {
+      return (
+        <CharComponent
+          click={() => this.removeLetterHandler(index)}
+          key={index}
+        >
+          {c}
+        </CharComponent>
+      );
+    });
     return (
       <div className="App">
-        <h1>HI I'm .... </h1>
-        <button
-          style={style}
-          onClick={() => this.switchNameHandler("Phillippp!!!")}
-        >
-          Switch Name
-        </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler}
-          click={this.switchNameHandler.bind(this, "Phil!")}
-        />
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          click={this.switchNameHandler}
-        />
+        <input type="text" onChange={this.textChangeHandler} />
+        <p>{this.state.charCount}</p>
+        <ValidationComponent textLength={this.state.charCount} />
+        <p>{this.state.text}</p>
+        {chars}
+        <ol>
+          <li>
+            Create an input field (in App component) with a change listener
+            which outputs the length of the entered text below it (e.g. in a
+            paragraph).
+          </li>
+          <li>
+            Create a new component (=> ValidationComponent) which receives the
+            text length as a prop
+          </li>
+          <li>
+            Inside the ValidationComponent, either output "Text too short" or
+            "Text long enough" depending on the text length (e.g. take 5 as a
+            minimum length)
+          </li>
+          <li>
+            Create another component (=> CharComponent) and style it as an
+            inline box (=> display: inline-block, padding: 16px, text-align:
+            center, margin: 16px, border: 1px solid black).
+          </li>
+          <li>
+            Render a list of CharComponents where each CharComponent receives a
+            different letter of the entered text (in the initial input field) as
+            a prop.
+          </li>
+          <li>
+            When you click a CharComponent, it should be removed from the
+            entered text.
+          </li>
+        </ol>
+        <p>Hint: Keep in mind that JavaScript strings are basically arrays!</p>
       </div>
     );
-    // return React.createElement(
-    //   "div",
-    //   null,
-    //   React.createElement("h1", { className: "App" }, "Hi im react")
-    // );
   }
 }
 

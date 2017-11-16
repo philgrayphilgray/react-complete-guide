@@ -1,0 +1,6 @@
+.ValidationComponent .success {
+  color: green;
+}
+.ValidationComponent .warning {
+  color: red;
+}
