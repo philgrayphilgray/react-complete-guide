@@ -1,0 +1,19 @@
+.Navigation ul {
+  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.Navigation ul li {
+  display: inline-block;
+  margin: 20px;
+}
+.Navigation ul li a {
+  text-decoration: none;
+  padding: 1em;
+}
+.Navigation ul li a.active {
+  text-decoration: underline;
+}
