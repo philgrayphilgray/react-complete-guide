@@ -1,74 +1,24 @@
-import React, { Component } from "react";
-import "./App.css";
-import Person from "./Person/Person";
+import React, { Component } from 'react';
+
+import Courses from './containers/Courses/Courses';
+import Users from './containers/Users/Users';
 
 class App extends Component {
-  state = {
-    persons: [
-      { name: "Phil", age: 30 },
-      { name: "Bob", age: 50 },
-      { name: "Cheongah", age: 29 }
-    ]
-  };
-  switchNameHandler = newName => {
-    this.setState({
-      persons: [
-        { name: newName, age: 30 },
-        { name: "Boba", age: 530 },
-        { name: "Cheongahz", age: 29 }
-      ]
-    });
-  };
-
-  nameChangedHandler = event => {
-    this.setState({
-      persons: [
-        { name: "Phil", age: 30 },
-        { name: event.target.value, age: 50 },
-        { name: "Cheongahz", age: 29 }
-      ]
-    });
-  };
-  render() {
-    const style = {
-      backgroundColor: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "8px",
-      cursor: "pointer"
-    };
+  render () {
     return (
       <div className="App">
-        <h1>HI I'm .... </h1>
-        <button
-          style={style}
-          onClick={() => this.switchNameHandler("Phillippp!!!")}
-        >
-          Switch Name
-        </button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler}
-          click={this.switchNameHandler.bind(this, "Phil!")}
-        />
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-          click={this.switchNameHandler}
-        />
+        <ol style={{textAlign: 'left'}}>
+          <li>Add Routes to load "Users" and "Courses" on different pages (by entering a URL, without Links)</li>
+          <li>Add a simple navigation with two links => One leading to "Users", one leading to "Courses"</li>
+          <li>Make the courses in "Courses" clickable by adding a link and load the "Course" component in the place of "Courses" (without passing any data for now)</li>
+          <li>Pass the course ID to the "Course" page and output it there</li>
+          <li>Pass the course title to the "Course" page - pass it as a param or score bonus points by passing it as query params (you need to manually parse them though!)</li>
+          <li>Load the "Course" component as a nested component of "Courses"</li>
+          <li>Add a 404 error page and render it for any unknown routes</li>
+          <li>Redirect requests to /all-courses to /courses (=> Your "Courses" page)</li>
+        </ol>
       </div>
     );
-    // return React.createElement(
-    //   "div",
-    //   null,
-    //   React.createElement("h1", { className: "App" }, "Hi im react")
-    // );
   }
 }
 
