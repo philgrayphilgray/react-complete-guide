@@ -11,8 +11,8 @@ const reducer = (state = initialState, action) => {
       const newID = state.uniqueId + 1;
       const newPerson = {
         id: newID,
-        name: "Phil",
-        age: Math.floor(Math.random() * 40)
+        name: action.personData.name,
+        age: action.personData.age
       };
       return {
         ...state,
