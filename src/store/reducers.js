@@ -35,12 +35,6 @@ const reducers = (state = initialState, action) => {
       break;
   }
 
-  //   if (action.type === "INCREMENT") {
-  //     return {
-  //       counter: state.counter + 1
-  //     };
-  //   }
-
   return state;
 };
 
