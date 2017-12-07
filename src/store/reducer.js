@@ -1,3 +1,5 @@
+import * as actionTypes from "./actionTypes";
+
 const initialState = {
   uniqueId: 0,
   persons: []
@@ -5,7 +7,7 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_PERSON":
+    case actionTypes.ADD_PERSON:
       const newID = state.uniqueId + 1;
       const newPerson = {
         id: newID,
@@ -17,7 +19,7 @@ const reducer = (state = initialState, action) => {
         uniqueId: newID,
         persons: state.persons.concat(newPerson)
       };
-    case "DELETE_PERSON":
+    case actionTypes.DELETE_PERSON:
       const filteredPersons = state.persons.filter(
         person => person.id !== action.removeId
       );
