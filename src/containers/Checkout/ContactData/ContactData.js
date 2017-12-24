@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+
+import { checkValidity } from "../../../shared/utility";
+
 import axios from "../../../axios-orders";
 import Button from "../../../components/UI/Button/Button";
 import Spinner from "../../../components/UI/Spinner/Spinner";
@@ -116,7 +119,7 @@ class ContactData extends Component {
     };
     this.props.onOrderBurger(order, this.props.token);
   };
-  checkValiditiy(value, rules) {
+  checkValidity(value, rules) {
     let isValid = true;
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
@@ -138,7 +141,7 @@ class ContactData extends Component {
       ...updatedOrderForm[inputIdentifier]
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValiditiy(
+    updatedFormElement.valid = checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
