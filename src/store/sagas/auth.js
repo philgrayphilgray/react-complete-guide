@@ -3,7 +3,6 @@ import { delay } from "redux-saga";
 import axios from "axios";
 
 import * as actions from "../actions/index";
-import { authCheckState } from "../actions/auth";
 
 export function* logoutSaga(action) {
   yield localStorage.removeItem("token");
